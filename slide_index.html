@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홍길동 | 서비스기획자 슬라이드 포트폴리오</title>
+    <!-- Google Fonts: Inter (Primary), Lora (Serif), Kalam (Script) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,400&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Starbucks Design System Tokens */
+            --sb-starbucks-green: #006241;
+            --sb-green-accent: #00754A;
+            --sb-house-green: #1E3932;
+            --sb-green-light: #d4e9e2;
+            --sb-gold: #cba258;
+            --sb-gold-lightest: #faf6ee;
+            
+            --sb-canvas-warm: #f2f0eb;
+            --sb-canvas-ceramic: #edebe9;
+            --sb-card-white: #ffffff;
+            --sb-neutral-cool: #f9f9f9;
+            
+            --sb-text-black: rgba(0, 0, 0, 0.87);
+            --sb-text-black-soft: rgba(0, 0, 0, 0.58);
+            --sb-text-white: #ffffff;
+            --sb-text-white-soft: rgba(255, 255, 255, 0.70);
+            
+            --sb-font-primary: 'Inter', sans-serif;
+            --sb-font-script: 'Kalam', cursive;
+            
+            --sb-radius-pill: 50px;
+            --sb-radius-card: 12px;
+            
+            --sb-shadow-card: 0px 0px 0.5px 0px rgba(0,0,0,0.14), 0px 1px 1px 0px rgba(0,0,0,0.24);
+            --sb-shadow-ambient: 0 20px 40px rgba(0,0,0,0.1);
+            --sb-shadow-frap: 0 0 6px rgba(0,0,0,0.24), 0 8px 12px rgba(0,0,0,0.14);
+            
+            --sb-tracking-tight: -0.01em;
+            --sb-transition: all 0.2s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { font-size: 62.5%; }
+
+        body {
+            font-family: var(--sb-font-primary);
+            font-size: 1.4rem;
+            line-height: 1.5;
+            letter-spacing: var(--sb-tracking-tight);
+            color: var(--sb-text-black);
+            background-color: var(--sb-neutral-cool); /* Background behind the slide */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2vh 2vw;
+            overflow-y: auto;
+        }
+
+        /* Slide Container (The 1-Page Layout) */
+        .slide-wrapper {
+            width: 100%;
+            max-width: 1280px;
+            height: 90vh; /* Fits within screen */
+            min-height: 720px;
+            max-height: 850px;
+            background-color: var(--sb-canvas-warm);
+            border-radius: 16px;
+            box-shadow: var(--sb-shadow-ambient);
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* LEFT SIDEBAR (Dark House Green) */
+        .sidebar {
+            width: 320px;
+            background-color: var(--sb-house-green);
+            color: var(--sb-text-white);
+            padding: 4.8rem 3.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3.2rem;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .sidebar::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0;
+            width: 4px;
+            background-color: var(--sb-gold);
+        }
+
+        .profile-img-wrapper {
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--sb-gold);
+            background-color: var(--sb-canvas-ceramic);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            margin-bottom: 1.6rem;
+        }
+
+        .profile-info { text-align: center; }
+        .profile-name { font-size: 2.8rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.16px; }
+        .profile-title { font-size: 1.5rem; color: var(--sb-text-white-soft); font-weight: 500; }
+        .cup-script { font-family: var(--sb-font-script); color: var(--sb-gold); font-size: 1.8rem; display: block; margin-top: 1.2rem; }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            font-size: 1.3rem;
+            color: var(--sb-text-white-soft);
+        }
+        .contact-item { display: flex; align-items: center; gap: 1rem; }
+        .contact-icon { width: 24px; text-align: center; font-size: 1.4rem; }
+
+        .skills-section h3 { font-size: 1.4rem; color: var(--sb-text-white); margin-bottom: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .skills-pills { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .skill-pill {
+            background-color: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.4rem 1rem;
+            border-radius: var(--sb-radius-pill);
+            font-size: 1.2rem;
+        }
+
+        /* RIGHT MAIN CONTENT (Cream Canvas) */
+        .main-content {
+            flex: 1;
+            padding: 4.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--sb-starbucks-green);
+            line-height: 1.3;
+            letter-spacing: -0.16px;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-desc {
+            font-size: 1.6rem;
+            color: var(--sb-text-black-soft);
+            max-width: 90%;
+            margin-bottom: 3.2rem;
+        }
+
+        /* Competencies Grid */
+        .comp-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.6rem;
+            margin-bottom: 3.2rem;
+        }
+
+        .comp-card {
+            background: var(--sb-card-white);
+            border-radius: var(--sb-radius-card);
+            padding: 2.0rem;
+            box-shadow: var(--sb-shadow-card);
+            border: 1px solid #eef0f2;
+        }
+
+        .comp-icon {
+            width: 3.6rem; height: 3.6rem;
+            border-radius: 50%;
+            background: var(--sb-green-light);
+            color: var(--sb-starbucks-green);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; margin-bottom: 1.2rem;
+        }
+
+        .comp-title { font-size: 1.6rem; font-weight: 700; color: var(--sb-text-black); margin-bottom: 0.8rem; }
+        .comp-desc { font-size: 1.25rem; color: var(--sb-text-black-soft); line-height: 1.5; }
+
+        /* Split Section: Achievements & Experience */
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3.2rem;
+            flex: 1;
+        }
+
+        .section-header {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--sb-green-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .section-header::after {
+            content: ''; flex: 1; height: 1px; background-color: rgba(0,0,0,0.06);
+        }
+
+        /* Achievement Cards Condensed */
+        .achieve-list { display: flex; flex-direction: column; gap: 1.2rem; }
+        .achieve-card {
+            background: var(--sb-card-white);
+            border-radius: var(--sb-radius-card);
+            box-shadow: var(--sb-shadow-card);
+            padding: 1.6rem 2.0rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .achieve-info h4 { font-size: 1.5rem; font-weight: 700; color: var(--sb-text-black); margin-bottom: 0.4rem; }
+        .achieve-info p { font-size: 1.2rem; color: var(--sb-text-black-soft); }
+        .achieve-metric {
+            background: var(--sb-gold-lightest);
+            border: 1px solid #dfc49d;
+            border-radius: var(--sb-radius-pill);
+            padding: 0.6rem 1.2rem;
+            color: var(--sb-starbucks-green);
+            font-weight: 700;
+            font-size: 1.4rem;
+            white-space: nowrap;
+        }
+
+        /* Timeline Condensed */
+        .timeline { display: flex; flex-direction: column; gap: 1.6rem; border-left: 2px solid var(--sb-green-light); padding-left: 1.6rem; margin-left: 0.8rem; }
+        .timeline-item { position: relative; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -2.3rem; top: 0.4rem;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--sb-green-accent); border: 2px solid var(--sb-canvas-warm);
+        }
+        .time-date { font-size: 1.2rem; color: var(--sb-green-accent); font-weight: 600; margin-bottom: 0.2rem; }
+        .time-title { font-size: 1.5rem; font-weight: 700; color: var(--sb-text-black); }
+        .time-role { font-size: 1.2rem; color: var(--sb-text-black-soft); }
+
+        /* Actions & Floating Button inside Slide */
+        .actions-bar {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-top: 2.4rem;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: var(--sb-radius-pill);
+            padding: 1rem 2.4rem; font-size: 1.4rem; font-weight: 600;
+            cursor: pointer; transition: var(--sb-transition); border: 1px solid transparent; text-decoration: none;
+        }
+        .btn:active { transform: scale(0.95); }
+        .btn-primary { background: var(--sb-green-accent); color: var(--sb-text-white); }
+        .btn-primary:hover { background: var(--sb-starbucks-green); }
+        .btn-outline { background: transparent; color: var(--sb-green-accent); border-color: var(--sb-green-accent); }
+        .btn-outline:hover { background: rgba(0, 117, 74, 0.08); }
+
+        .frap-btn {
+            position: absolute; bottom: 3.2rem; right: 3.2rem;
+            width: 56px; height: 56px; border-radius: 50%;
+            background: var(--sb-green-accent); color: white;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: var(--sb-shadow-frap); cursor: pointer; transition: var(--sb-transition); border: none;
+        }
+        .frap-btn:hover { transform: scale(1.05); }
+        .frap-btn:active { transform: scale(0.95); box-shadow: 0 0 6px rgba(0,0,0,0.24); }
+
+        /* Responsive Breakpoint for smaller screens (Stacks the layout) */
+        @media (max-width: 960px) {
+            body { padding: 0; background: var(--sb-canvas-warm); }
+            .slide-wrapper { height: auto; min-height: 100vh; flex-direction: column; border-radius: 0; box-shadow: none; max-height: none; }
+            .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 3.2rem; }
+            .sidebar::after { width: 100%; height: 4px; bottom: 0; top: auto; right: auto; }
+            .profile-img { width: 100px; height: 100px; }
+            .skills-section { display: none; } /* Hide skills on tight mobile view to save space */
+            .comp-grid, .split-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+            .frap-btn { position: fixed; bottom: 2.4rem; right: 2.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-wrapper">
+        
+        <!-- Left Sidebar (House Green) -->
+        <aside class="sidebar">
+            <div>
+                <div class="profile-img-wrapper">
+                    <img src="image.jpg" alt="홍길동 사진" class="profile-img" onerror="this.src='https://via.placeholder.com/160x160/edebe9/006241?text=Photo'">
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name">홍길동</h1>
+                    <p class="profile-title">Product Manager · PO</p>
+                    <span class="cup-script">Hello, Gildong! ☕</span>
+                </div>
+            </div>
+
+            <div class="contact-list">
+                <div class="contact-item"><span class="contact-icon">📧</span> gildong.hong@email.com</div>
+                <div class="contact-item"><span class="contact-icon">📱</span> 010-1234-5678</div>
+                <div class="contact-item"><span class="contact-icon">💼</span> linkedin.com/in/gildong</div>
+                <div class="contact-item"><span class="contact-icon">📝</span> brunch.co.kr/@gildong</div>
+            </div>
+
+            <div class="skills-section">
+                <h3>Tech & Tools</h3>
+                <div class="skills-pills">
+                    <span class="skill-pill">Figma</span>
+                    <span class="skill-pill">GA4</span>
+                    <span class="skill-pill">Amplitude</span>
+                    <span class="skill-pill">Jira & Confluence</span>
+                    <span class="skill-pill">SQL</span>
+                    <span class="skill-pill">A/B Testing</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Main Content (Cream Canvas) -->
+        <main class="main-content">
+            
+            <header>
+                <h2 class="hero-title">가설과 데이터를 바탕으로<br>사용자 불편을 명확한 가치로 전환합니다.</h2>
+                <p class="hero-desc">
+                    3년 차 PM으로서 문제 정의부터 MVP 기획, A/B 테스트 성과 검증까지 데이터 기반의 의사결정 프로세스를 리드하며 비즈니스 지표를 개선합니다.
+                </p>
+            </header>
+
+            <!-- 3 Columns Core Competencies -->
+            <section class="comp-grid">
+                <div class="comp-card">
+                    <div class="comp-icon">📊</div>
+                    <h3 class="comp-title">데이터 기반 의사결정</h3>
+                    <p class="comp-desc">GA4/Amplitude를 활용해 행동 데이터를 분석하고, 정량적 수치에 기반해 우선순위와 개선 가설을 수립합니다.</p>
+                </div>
+                <div class="comp-card">
+                    <div class="comp-icon">🎨</div>
+                    <h3 class="comp-title">UX/UI 화면 설계</h3>
+                    <p class="comp-desc">Figma를 활용한 와이어프레임과 명확한 PRD(요구사항 정의서) 작성으로 개발/디자인 팀의 혼선을 방지합니다.</p>
+                </div>
+                <div class="comp-card">
+                    <div class="comp-icon">🤝</div>
+                    <h3 class="comp-title">애자일 & 소통</h3>
+                    <p class="comp-desc">Jira/Confluence를 통한 스크럼 환경 구축. '왜(Why)'를 설득하며 크로스펑셔널 팀의 목표를 얼라인(Align) 합니다.</p>
+                </div>
+            </section>
+
+            <!-- Split Bottom Area: Achievements & Exp -->
+            <section class="split-grid">
+                
+                <!-- Achievements List -->
+                <div>
+                    <h3 class="section-header">Key Achievements</h3>
+                    <div class="achieve-list">
+                        <div class="achieve-card">
+                            <div class="achieve-info">
+                                <h4>결제 펀넬 UX/UI 전면 개편</h4>
+                                <p>배송지/결제 수단 폼 단순화를 통한 이탈 방지</p>
+                            </div>
+                            <div class="achieve-metric">+22% 구매</div>
+                        </div>
+                        <div class="achieve-card">
+                            <div class="achieve-info">
+                                <h4>AI 상품 추천 영역 신설</h4>
+                                <p>사용자 구매 이력 기반 메인 추천 블록 A/B 테스트</p>
+                            </div>
+                            <div class="achieve-metric">+35% CTR</div>
+                        </div>
+                        <div class="achieve-card">
+                            <div class="achieve-info">
+                                <h4>온보딩 프로세스 간소화</h4>
+                                <p>소셜 로그인 연동 및 혜택 안내 카루셀 도입</p>
+                            </div>
+                            <div class="achieve-metric">-28% 이탈</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline List -->
+                <div>
+                    <h3 class="section-header">Experience</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="time-date">2023.03 - 현재</div>
+                            <div class="time-title">ABC Tech</div>
+                            <div class="time-role">PM (서비스기획팀)</div>
+                            <p style="font-size: 1.15rem; color: var(--sb-text-black-soft); margin-top: 0.4rem;">
+                                결제/주문 도메인 총괄 및 A/B 테스트 검증
+                            </p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="time-date">2021.08 - 2023.02</div>
+                            <div class="time-title">XYZ Studio</div>
+                            <div class="time-role">UX 기획자</div>
+                            <p style="font-size: 1.15rem; color: var(--sb-text-black-soft); margin-top: 0.4rem;">
+                                O2O 매칭 서비스 MVP 신규 기획 론칭
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Actions Row -->
+            <div class="actions-bar">
+                <a href="#" class="btn btn-primary">이력서 원본 다운로드 (PDF)</a>
+                <a href="#" class="btn btn-outline">상세 포트폴리오 보기</a>
+            </div>
+
+            <!-- Frap Button (Floating internal) -->
+            <button class="frap-btn" onclick="location.href='mailto:gildong.hong@email.com'" title="이메일 보내기">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </button>
+            
+        </main>
+    </div>
+
+</body>
+</html>
